@@ -2,9 +2,13 @@
 """ Module of auth
 """
 from flask import request
+from typing import List, bool, TypeVar
 
 
 class Auth:
+    """Authenticate"""
+    
+    
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """returns false"""
         return False
