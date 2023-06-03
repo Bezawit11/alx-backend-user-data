@@ -55,5 +55,6 @@ class BasicAuth(Auth):
         except Exception:
             return None
         for a in all:
-            if a.is_valid_password(user_pwd)
+            if a.is_valid_password(user_pwd):
                 return a
+        return None
