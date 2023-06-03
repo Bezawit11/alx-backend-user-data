@@ -22,7 +22,7 @@ if AUTH_TYPE == "auth":
  #   from api.v1.auth.basic_auth import BasicAuth
   #  auth = BasicAuth()
 
-@app.before_request():
+@app.before_request
     def before_r():
         """"called before each request"""
         excluded_paths = ['/api/v1/status/', 
