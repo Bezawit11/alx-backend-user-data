@@ -22,10 +22,11 @@ elif AUTH_TYPE == "basic_auth":
     from api.v1.auth.basic_auth import BasicAuth
     auth = BasicAuth()
 
+
 @app.before_request
 def before_r():
     """"called before each request"""
-    excluded_paths = ['/api/v1/status/', 
+    excluded_paths = ['/api/v1/status/',
                       '/api/v1/unauthorized/',
                       '/api/v1/forbidden/']
     if auth is None:
