@@ -24,7 +24,7 @@ elif AUTH_TYPE == "basic_auth":
 
 
 @app.before_request
-def before_r():
+def before_r() -> str:
     """"called before each request"""
     excluded_paths = ['/api/v1/status/',
                       '/api/v1/unauthorized/',
