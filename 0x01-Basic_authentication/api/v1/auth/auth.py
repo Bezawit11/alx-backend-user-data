@@ -12,6 +12,9 @@ class Auth:
         """returns false"""
         if excluded_paths is None or excluded_paths == []:
             return True
+        if path[-1] == '/':
+            if path[:-1] in excluded_paths:
+                return False
         if path is None or path not in excluded_paths:
             return True
         if path in excluded_paths:
