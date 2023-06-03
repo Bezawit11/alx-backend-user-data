@@ -4,6 +4,7 @@
 from api.v1.auth.auth import Auth
 from base64 import b64decode
 from models.user import User
+from typing import TypeVar
 
 
 class BasicAuth(Auth):
@@ -49,10 +50,10 @@ class BasicAuth(Auth):
             return None
         if user_pwd is None or type(user_pwd) != str:
             return None
-        if not User.search(email, user_email):
+        try:
+            all = User.search({'email': user_email})
+        except Exception:
             return None
-        else:
-            if User.is_valid_password(user_pwd):
-                return None
-            else:
-                return User.search(email, user_email)
+        for a in all:
+            if a.is_valid_password(user_pwd)
+                return a
