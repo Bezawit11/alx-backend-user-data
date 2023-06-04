@@ -71,14 +71,14 @@ class BasicAuth(Auth):
         hauth = self.authorization_header(request)
         if not hauth:
             return None
-        enc = extract_base64_authorization_header(hauth)
+        enc = self.extract_base64_authorization_header(hauth)
         if not enc:
             return None
-        dec = decode_base64_authorization_header(enc)
+        dec = self.decode_base64_authorization_header(enc)
         if not dec:
             return None
-        email, pwd = extract_user_credentials(dec)
+        email, pwd = self.extract_user_credentials(dec)
         if not email or not pwd:
             return None
-        user = user_object_from_credentials(email, pwd)
+        user = self.user_object_from_credentials(email, pwd)
         return user
