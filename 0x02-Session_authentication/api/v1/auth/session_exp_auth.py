@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 
 
 class SessionExpAuth(SessionAuth):
-    """expiration"""
+    """Now we will add an expiration date to a Session ID"""
     def __init__(self):
         """initialization"""
         ses = getenv("SESSION_DURATION")
