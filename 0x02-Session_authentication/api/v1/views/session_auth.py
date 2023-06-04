@@ -20,7 +20,7 @@ def ses_auth():
     if not users:
         return jsonify({"error": "no user found for this email"}), 404
     for i in users:
-        if i.is_valid_password(password):
+        if i.is_valid_password(pwd):
             user = i
     if not user:
         return jsonify({"error": "wrong password"}), 401
