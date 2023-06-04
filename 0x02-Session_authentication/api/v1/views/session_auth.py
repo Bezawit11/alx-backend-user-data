@@ -30,7 +30,9 @@ def ses_auth():
     response.set_cookie(SESSION_NAME, session_id)
     return response
 
-@app_views.route('/auth_session/logout', methods=['DELETE'], strict_slashes=False)
+
+@app_views.route('/auth_session/logout',
+                 methods=['DELETE'], strict_slashes=False)
 def logout():
     """for deleting the Session ID contains in the request as cookie"""
     from api.v1.app import auth
@@ -38,4 +40,3 @@ def logout():
     if not b:
         abort(404)
     return jsonify({}), 200
-
