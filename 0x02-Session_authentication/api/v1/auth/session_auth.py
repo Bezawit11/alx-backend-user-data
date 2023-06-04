@@ -8,4 +8,5 @@ from typing import TypeVar
 
 
 class SessionAuth(Auth):
+    """session authentication"""
     pass
