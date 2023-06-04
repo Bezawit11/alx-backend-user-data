@@ -29,3 +29,12 @@ class SessionAuth(Auth):
         if type(session_id) != str:
             return None
         return self.user_id_by_session_id.get(session_id)
+
+    def current_user(self, request=None):
+        """returns a User instance based on a cookie value"""
+        if self.session_cookie(request):
+            c = self.session_cookie(request)
+            i = self.user_id_for_session_id(c)
+            return User.get(i)
+        else:
+            return None
