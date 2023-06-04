@@ -12,10 +12,10 @@ def ses_auth():
     """returns user"""
     email = request.form.get('email')
     if not email:
-        return jsonify({ "error": "email missing" }), 400
+        return jsonify({"error": "email missing"}), 400
     pwd = request.form.get('password')
     if not pwd:
-        return jsonify({ "error": "password missing" }), 400
+        return jsonify({"error": "password missing"}), 400
     users = User.search({'email': email})
     if not users:
         return jsonify({"error": "no user found for this email"}), 404
