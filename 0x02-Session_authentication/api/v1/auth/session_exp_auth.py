@@ -24,9 +24,10 @@ class SessionExpAuth(SessionAuth):
         s = super().create_session(user_id)
         if s is None:
             return None
-        session dictionary = {'user_id': user_id,
-                              'created_at': datetime.now()
-                             }
+        session dictionary = {
+            'user_id': user_id,
+            'created_at': datetime.now()
+        }
         self.user_id_by_session_id[s] = session_dictionary
         return s
       
