@@ -20,11 +20,10 @@ def ses_auth():
     if not users:
         return jsonify({"error": "no user found for this email"}), 404
     for i in users:
-        if i.is_valid_password(pwd):
-            user = i
-    if not user:
-        return jsonify({"error": "wrong password"}), 401
+        if not i.is_valid_password(pwd):
+            return jsonify({"error": "wrong password"}), 401
     from api.v1.app import auth
+    user = users[0]
     session_id = auth.create_session(user.id)
     SESSION_NAME = getenv("SESSION_NAME")
     response = jsonify(user.to_json())
