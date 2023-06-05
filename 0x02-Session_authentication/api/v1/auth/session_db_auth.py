@@ -19,7 +19,7 @@ class SessionDBAuth(SessionExpAuth):
         u.save()
         u.save_to_file()
         return session_id
-        
+      
     def user_id_for_session_id(self, session_id=None):
         """returns the User ID by requesting UserSession in the db"""
         if session_id is None:
@@ -31,7 +31,7 @@ class SessionDBAuth(SessionExpAuth):
             if i.session_id == session_id:
                 return i.user_id
         return None
-        
+
     def destroy_session(self, request=None):
         """destroys the UserSession based on the Session ID"""
         if request is None:
