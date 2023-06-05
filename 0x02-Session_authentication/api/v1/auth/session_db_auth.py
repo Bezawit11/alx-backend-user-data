@@ -39,7 +39,7 @@ class SessionDBAuth(SessionExpAuth):
         c = self.session_cookie(request)
         if c is None:
             return None
-         u = UserSession.all()
+        u = UserSession.all()
         if not u:
             return None
         for i in u:
