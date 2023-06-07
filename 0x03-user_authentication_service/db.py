@@ -53,5 +53,8 @@ class DB:
         """updates users based on the given arguments"""
         user = self.find_user_by(id=user_id)
         if user:
+            for k in kwargs.keys():
+                if k not in User.__table__.columns.keys():
+                    raise ValueError
             self._session.query(User).filter(id==user_id).update(**kwargs)
             self._session.commit()
