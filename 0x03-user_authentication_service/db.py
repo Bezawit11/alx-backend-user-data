@@ -39,13 +39,15 @@ class DB:
         self._session.commit()
         return user
 
-    def find_user_by(self, **kwargs: str) -> User:
-        """finds user from database"""
+    def find_user_by(self, **kwargs) -> User:
+        """finds user from database by querying"""
+        if not kwargs:
+            raise InvalidRequestError
         for k in kwargs.keys():
             if k not in User.__table__.columns.keys():
                 raise InvalidRequestError
         a = self._session.query(User).filter_by(**kwargs).first()
-        if not a:
+        if a is None:
             raise NoResultFound
         return a
 
