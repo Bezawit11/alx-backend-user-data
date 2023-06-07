@@ -38,10 +38,11 @@ class DB:
         self._session.commit()
         return user
 
-    def find_user_by(self, arbitrary: str) -> User:
+    def find_user_by(self, **kwargs) -> User:
         """finds user from database"""
         try:
-            a = self._session.query(User).filter(email=arbitrary).first()
-            return a
+            for k,v in kwargs.items():
+                a = self._session.query(User).filter(k=v).first()
+                return a
         except NoResultFound:
             return None
