@@ -46,7 +46,7 @@ class DB:
         for k in kwargs.keys():
             if k not in User.__table__.columns.keys():
                 raise InvalidRequestError
-        a = self._session.query(User).filter_by(**kwargs).first()
+        a = self._session.query(User).filter(**kwargs).first()
         if a is None:
             raise NoResultFound
         return a
