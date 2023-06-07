@@ -5,7 +5,7 @@ from flask import Flask, jsonify
 
 
 app = Flask(__name__)
-@aap.route('/')
+@app.route('/')
 def index():
     """jsonifies"""
     return jsonify({"message": "Bienvenue"})
