@@ -48,3 +48,10 @@ class DB:
         if a is None:
             raise NoResultFound
         return a
+
+    def update_user(self, user_id: int, **kwargs) -> None:
+        """updates users based on the given arguments"""
+        user = find_user_by(kwargs)
+        if user:
+            self._session.query.filter(user).update(**kwargs)
+        
