@@ -21,8 +21,9 @@ class Auth:
         """takes email and password arguments and returns
             a User object
         """
-        user = self._db.find_user_by(email=email)
-        if user:
+        try:
+            user = self._db.find_user_by(email=email)
+        except:
             raise ValueError(f'User {email} already exists')
         pwd = _hash_password(password)
         new_user = self._db.add_user(email, pwd)
