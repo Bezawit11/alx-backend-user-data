@@ -33,5 +33,5 @@ class DB:
     def add_user(self, email, hashed_password):
         """adds new user to database"""
         new_user = User(email=email, hashed_password=hashed_password)
-        session.add(new_user)
+        Session.add(new_user)
         return new_user
