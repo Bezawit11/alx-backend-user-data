@@ -56,5 +56,7 @@ class DB:
             for k in kwargs.keys():
                 if k not in User.__table__.columns.keys():
                     raise ValueError
-            user.update(**kwargs)
+            for key, value in kwargs:
+                setattr(user, key, value)
             self._session.commit()
+
