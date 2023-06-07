@@ -42,13 +42,10 @@ class DB:
     def find_user_by(self, **kwargs: str) -> User:
         """finds user from database"""
         for k in kwargs.keys():
-            if k not in User.__table__.columns():
-        try:
-            
-        except InvalidRequestError:
-                _table = None
-        try:
-            a = self._session.query(User).filter_by(**kwargs).first()
-            return a
-        except NoResultFound:
-            return None
+            if k not in User.__table__.columns.keys():
+                raise InvalidRequestError
+        a = self._session.query(User).filter_by(**kwargs).first()
+        if not a:
+            raise NoResultFound
+        return a
+
