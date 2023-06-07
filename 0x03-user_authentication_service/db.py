@@ -51,7 +51,7 @@ class DB:
 
     def update_user(self, user_id: int, **kwargs) -> None:
         """updates users based on the given arguments"""
-        user = find_user_by(kwargs)
+        user = self.find_user_by(kwargs)
         if user:
             self._session.query.filter(user).update(**kwargs)
         
