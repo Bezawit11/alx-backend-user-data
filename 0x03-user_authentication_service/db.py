@@ -56,5 +56,5 @@ class DB:
             for k in kwargs.keys():
                 if k not in User.__table__.columns.keys():
                     raise ValueError
-            self._session.query(User).filter(id==user_id).update(**kwargs)
+            user.update(**kwargs)
             self._session.commit()
