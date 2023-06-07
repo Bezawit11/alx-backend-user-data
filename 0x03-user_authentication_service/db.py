@@ -41,8 +41,6 @@ class DB:
 
     def find_user_by(self, **kwargs) -> User:
         """finds user from database by querying"""
-        if not kwargs:
-            raise InvalidRequestError
         for k in kwargs.keys():
             if k not in User.__table__.columns.keys():
                 raise InvalidRequestError
