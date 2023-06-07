@@ -41,8 +41,8 @@ class DB:
     def find_user_by(self, **kwargs) -> User:
         """finds user from database"""
         try:
-            for k,v in kwargs.items():
-                a = self._session.query(User).filter(k=v).first()
+            for v in kwargs.values():
+                a = self._session.query(User).filter(v).first()
                 return a
         except NoResultFound:
             return None
