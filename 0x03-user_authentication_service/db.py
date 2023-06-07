@@ -41,7 +41,7 @@ class DB:
     def find_user_by(self, arbitrary: str) -> User:
         """finds user from database"""
         try:
-            a = self._session.query(User).filter(email=email).first()
+            a = self._session.query(User).filter(email=arbitrary).first()
             return a
         except NoResultFound:
             return None
