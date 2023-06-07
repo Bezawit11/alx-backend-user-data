@@ -51,11 +51,11 @@ class DB:
 
     def update_user(self, user_id: int, **kwargs) -> None:
         """updates users based on the given arguments"""
+        for k in kwargs.keys():
+            if k not in User.__table__.columns.keys():
+                raise ValueError
         user = self.find_user_by(id=user_id)
         if user:
-            for k in kwargs.keys():
-                if k not in User.__table__.columns.keys():
-                    raise ValueError
             for key, value in kwargs:
                 setattr(user, key, value)
             self._session.commit()
