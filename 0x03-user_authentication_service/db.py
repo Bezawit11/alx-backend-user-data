@@ -53,5 +53,5 @@ class DB:
         """updates users based on the given arguments"""
         user = self.find_user_by(id=user_id)
         if user:
-            self._session.query.filter(user).update(**kwargs)
+            self._session.query(User).filter(id=user_id).update(**kwargs)
         
