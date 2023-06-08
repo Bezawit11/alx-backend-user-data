@@ -22,6 +22,8 @@ class Auth:
         """takes email and password arguments and returns
             a User object
         """
+        if email is None or password is None:
+            return None
         try:
             user = self._db.find_user_by(email=email)
             if user:
