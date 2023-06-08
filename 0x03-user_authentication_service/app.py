@@ -16,11 +16,11 @@ def index():
 @app.route('/users', methods=['POST'])
 def users():
     """registers a user"""
-    email = request.headers.get('email')
-    pwd = request.headers.get('password')
+    email = request.form('email')
+    pwd = request.form('password')
     try:
         AUTH.register_user(email, pwd)
-        return jsonify({"email": "<registered email>", "message": "user created"})
+        return jsonify({"email": email, "message": "user created"})
     except ValueError:
         return jsonify({"message": "email already registered"}), 400
     
