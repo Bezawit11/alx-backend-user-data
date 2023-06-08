@@ -17,8 +17,8 @@ def index():
 def users() -> str:
     """registers a user if it doesnt already exist"""
     try:
-        email = request.headerss.get('email')
-        pwd = request.headers.get('password')
+        email = request.form['email']
+        pwd = request.form['password']
     except Exception:
         abort(401)
     try:
