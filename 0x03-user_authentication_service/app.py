@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""API Routes for Authentication Service"""
+"""flask app for handling user authentication"""
+
+
 from auth import Auth
 from flask import Flask, jsonify, request, abort
 
@@ -10,7 +12,7 @@ AUTH = Auth()
 
 @app.route('/', methods=['GET'])
 def index() -> str:
-    """homepage to our app; imploys get request"""
+    """homepage to our app; employs get request"""
     return jsonify({"message": "Bienvenue"})
 
 
@@ -27,6 +29,7 @@ def users() -> str:
         return jsonify({"email": email, "message": "user created"})
     except ValueError:
         return jsonify({"message": "email already registered"}), 400
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")
