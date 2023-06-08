@@ -38,7 +38,7 @@ class Auth:
         try:
             user = self._db.find_user_by(email=email)
             if user:
-                if user.password == _hash_password(password):
+                if user.hashed_password == _hash_password(password):
                     return True
                 else:
                     return False
