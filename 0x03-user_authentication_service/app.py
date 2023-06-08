@@ -20,7 +20,7 @@ def users() -> str:
         email = request.form['email']
         pwd = request.form['password']
     except Exception:
-        abort(401)
+        abort(400)
     try:
         AUTH.register_user(email, pwd)
         return jsonify({"email": email, "message": "user created"})
