@@ -14,10 +14,13 @@ def index():
     return jsonify({"message": "Bienvenue"})
  
 @app.route('/users', methods=['POST'])
-def users():
-    """registers a user"""
-    email = request.args.get('email')
-    pwd = request.args.get('password')
+def users() -> str:
+    """registers a user if it doesnt already exist"""
+    try:
+        email = request.headerss.get('email')
+        pwd = request.headers.get('password')
+    except Exception:
+        abort(401)
     try:
         AUTH.register_user(email, pwd)
         return jsonify({"email": email, "message": "user created"})
