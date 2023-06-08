@@ -32,4 +32,13 @@ class Auth:
             pwd = _hash_password(password)
             new_user = self._db.add_user(email, pwd)
             return new_user
+    
+    def valid_login(self, email: str, password: str) -> bool:
+        """validates login on user"""
+        try:
+            user = self._db.find_user_by(email=email)
+            if user:
+                return True
+        except NoResultFound:
+            return False
 
