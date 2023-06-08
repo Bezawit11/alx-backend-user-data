@@ -23,12 +23,24 @@ def users() -> str:
         email = request.form['email']
         pwd = request.form['password']
     except Exception:
-        abort(400)
+        abort(401)
     try:
         AUTH.register_user(email, pwd)
         return jsonify({"email": email, "message": "user created"})
     except ValueError:
         return jsonify({"message": "email already registered"}), 400
+
+@app.route('/sessions', methods=['POST'])
+def login() -> str:
+    """checks if session exists for the given user"""
+    email = request.form['email']
+    pwd = request.form['password']
+    if AUTH.valid_login(email, pwd):
+        session_id = AUTH.create_session(email)
+        res = jsonify({"email": "<user email>", "message": "logged in"})
+        res.set_cookie('session_id', session_id)
+        return res
+    abort(401)
 
 
 if __name__ == "__main__":
