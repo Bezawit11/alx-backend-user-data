@@ -74,9 +74,12 @@ def get_reset_password_token() -> str:
     """"resets the password of a user if the right credentials r provided"""
     try:
         email = request.form['email']
+    except KeyError:
+        abort(403)
+    try:
         token = AUTH.get_reset_password_token(email)
-        return jsonify({"email": "<user email>", "reset_token": "<reset token>"}, 200)
-    Except Exception:
+        return jsonify({"email": "<user email>", "reset_token": "<reset token>"}),  200
+    Except ValueError:
         abort(403)
 
 @app.route('/reset_password', methods=['PUT'])
