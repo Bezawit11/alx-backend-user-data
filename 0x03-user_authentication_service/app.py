@@ -77,15 +77,10 @@ def reset_token() -> str:
     except KeyError:
         abort(403)
     try:
-        token = AUTH.get_reset_password_token(email)
-        return jsonify({"email": "<user email>", "reset_token": "<reset token>"}),  200
+        rtoken = AUTH.get_reset_password_token(email)
+        return jsonify({"email": email, "reset_token": rtoken}),  200
     except ValueError:
         abort(403)
-
-@app.route('/reset_password', methods=['PUT'])
-def update_password() -> str:
-    """update password of a user if valid"""
-
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")
