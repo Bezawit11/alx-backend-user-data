@@ -8,13 +8,16 @@ from user import User
 from db import DB
 from sqlalchemy.orm.exc import NoResultFound
 
+
 def _hash_password(password: str) -> str:
     """takes in a password string arguments and returns bytes"""
     return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
+
 def _generate_uuid() -> str:
     """generates a string representation of uuid"""
     return str(uuid4())
+
 
 class Auth:
     """Auth class to interact with the authentication database.
@@ -22,7 +25,7 @@ class Auth:
 
     def __init__(self):
         self._db = DB()
-        
+
     def register_user(self, email: str, password: str) -> User:
         """takes email and password arguments and returns
             a User object
@@ -37,7 +40,7 @@ class Auth:
             pwd = _hash_password(password)
             new_user = self._db.add_user(email, pwd)
             return new_user
-    
+
     def valid_login(self, email: str, password: str) -> bool:
         """validates login on user"""
         try:
@@ -49,7 +52,7 @@ class Auth:
                 return False
         except NoResultFound:
             return False
-        
+  
     def create_session(self, email: str) -> str:
         """creates a session id for the logged in user"""
         try:
@@ -60,7 +63,7 @@ class Auth:
                 return user.session_id
         except NoResultFound:
             return None
-    
+
     def get_user_from_session_id(self, session_id: str) -> User:
         """finds a user coressponding with the provided session id"""
         if session_id is None:
