@@ -14,7 +14,7 @@ def register_user(email: str, password: str) -> None:
     p = {'email': email, 'password': password}
     res = requests.post(url, p=p)
     assert res.status_code == 200
-    assert res.json() = {"email": email, "message": "user created"}
+    assert res.json() == {"email": email, "message": "user created"}
 
 def log_in_wrong_password(email: str, password: str) -> None:
     """test for wrong password input during login"""
@@ -29,7 +29,7 @@ def log_in(email: str, password: str) -> str:
     p = {'email': email, 'password': password}
     res = requests.post(url, p=p)
     assert res.status_code == 200
-    assert res.json() = {"email": email, "message": "logged in"}
+    assert res.json() == {"email": email, "message": "logged in"}
     
 def profile_unlogged() -> None:
     """successful logout testing"""
