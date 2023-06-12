@@ -11,23 +11,23 @@ NEW_PASSWD = "t4rt1fl3tt3"
 def register_user(email: str, password: str) -> None:
     """tests the registers user function"""
     url = 'http://0.0.0.0:5000/users'
-    p = {'email': email, 'password': password}
-    res = requests.post(url, p=p)
+    data = {'email': email, 'password': password}
+    res = requests.post(url, data=data)
     assert res.status_code == 200
     assert res.json() == {"email": email, "message": "user created"}
 
 def log_in_wrong_password(email: str, password: str) -> None:
     """test for wrong password input during login"""
     url = 'http://0.0.0.0:5000/login'
-    p = {'email': email, 'password': password}
-    res = requests.post(url, p=p)
+    data = {'email': email, 'password': password}
+    res = requests.post(url, data=data)
     assert res.status_code == 401
     
 def log_in(email: str, password: str) -> str:
     """logging in with the right credentials"""
     url = 'http://0.0.0.0:5000/login'
-    p = {'email': email, 'password': password}
-    res = requests.post(url, p=p)
+    data = {'email': email, 'password': password}
+    res = requests.post(url, data=data)
     assert res.status_code == 200
     assert res.json() == {"email": email, "message": "logged in"}
     
@@ -40,8 +40,8 @@ def profile_unlogged() -> None:
 def profile_logged(session_id: str) -> None:
     """test to check if user is logged"""
     url = 'http://0.0.0.0:5000/profile'
-    p = {'session_id', session_id}
-    res = requests.get(url, p=p)
+    data = {'session_id', session_id}
+    res = requests.get(url, data=data)
     assert res.status_code == 200
     
 def log_out(session_id: str) -> None:
