@@ -84,8 +84,11 @@ def reset_token() -> str:
 
 
 @app.route('/reset_password', methods=['PUT'])
-def reset_token() -> str:
-    """resets the password of a user if the right credentials r provided"""
+def update_password() -> str:
+    """returns 403 if invalid token
+        updates password if the right info
+        is given
+    """
     try:
         email = request.form['email']
         reset_token = request.form['reset_token']
