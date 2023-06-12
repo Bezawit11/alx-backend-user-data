@@ -65,7 +65,7 @@ def update_password(email: str, reset_token: str, new_password: str) -> None:
     p = {'email': email, 'reset_token': reset_token, 'new_password':new_password}
     res = requests.post(url, p=p)
     assert res.status_code == 200
-    asser res.json() == {"email": EMAIL, "message": "Password updated"}
+    assert res.json() == {"email": EMAIL, "message": "Password updated"}
     
 
 if __name__ == "__main__":
