@@ -25,7 +25,7 @@ def log_in_wrong_password(email: str, password: str) -> None:
     
 def log_in(email: str, password: str) -> str:
     """logging in with the right credentials"""
-    url = 'http://localhost:5000/login'
+    url = 'http://localhost:5000/sessions'
     data = {'email': email, 'password': password}
     res = requests.post(url, data=data)
     assert res.status_code == 200
