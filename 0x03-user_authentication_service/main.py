@@ -55,8 +55,8 @@ def log_out(session_id: str) -> None:
 def reset_password_token(email: str) -> str:
     """testing for reset token func"""
     url = 'http://localhost:5000/reset_password'
-    p = {'email': email}
-    res = requests.post(url, p=p)
+    data = {'email': email}
+    res = requests.post(url, data=data)
     assert res.status_code == 200
     tok = res.json().get('reset_token')
     assert res.json() == {'email': EMAIL, 'reset_token': tok}
@@ -65,10 +65,10 @@ def reset_password_token(email: str) -> str:
 def update_password(email: str, reset_token: str, new_password: str) -> None:
     """testing the update password func"""
     url = 'http://localhost:5000/reset_password'
-    p = {'email': email, 'reset_token': reset_token, 'new_password':new_password}
-    res = requests.post(url, p=p)
+    data = {'email': email, 'reset_token': reset_token, 'new_password':new_password}
+    res = requests.post(url, data=data)
     assert res.status_code == 200
-    assert res.json() == {"email": EMAIL, "message": "Password updated"}
+    assert res.json() == {"email": email, "message": "Password updated"}
     
 
 if __name__ == "__main__":
