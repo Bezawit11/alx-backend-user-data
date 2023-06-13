@@ -41,8 +41,8 @@ def profile_unlogged() -> None:
 def profile_logged(session_id: str) -> None:
     """test to check if user is logged"""
     url = 'http://localhost:5000/profile'
-    data = {'session_id', session_id}
-    res = requests.get(url, data=data)
+    cookies = {'session_id', session_id}
+    res = requests.get(url, cookies=cookies)
     assert res.status_code == 200
     
 def log_out(session_id: str) -> None:
