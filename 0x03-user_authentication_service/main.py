@@ -41,7 +41,7 @@ def profile_unlogged() -> None:
 def profile_logged(session_id: str) -> None:
     """test to check if user is logged"""
     url = 'http://localhost:5000/profile'
-    cookies = {'session_id', session_id}
+    cookies = {'session_id': session_id}
     res = requests.get(url, cookies=cookies)
     assert res.status_code == 200
     
@@ -59,6 +59,7 @@ def reset_password_token(email: str) -> str:
     assert res.status_code == 200
     tok = res.json().get('reset_token')
     assert res.json() == {'email': EMAIL, 'reset_token': tok}
+    return tok
 
 def update_password(email: str, reset_token: str, new_password: str) -> None:
     """testing the update password func"""
