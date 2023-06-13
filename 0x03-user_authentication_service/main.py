@@ -30,6 +30,7 @@ def log_in(email: str, password: str) -> str:
     res = requests.post(url, data=data)
     assert res.status_code == 200
     #assert res.json() == {"email": email, "message": "logged in"}
+    return res.cookies.get("session_id")
     
 def profile_unlogged() -> None:
     """successful logout testing"""
