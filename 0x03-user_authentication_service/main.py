@@ -24,7 +24,7 @@ def log_in_wrong_password(email: str, password: str) -> None:
     data = {'email': email, 'password': password}
     res = requests.post(url, data=data)
     assert res.status_code == 404
-    
+
 
 def log_in(email: str, password: str) -> str:
     """logging in with the right credentials"""
@@ -41,7 +41,7 @@ def profile_unlogged() -> None:
     url = 'http://localhost:5000/sessions'
     res = requests.delete(url)
     assert res.status_code == 403
-    
+
 
 def profile_logged(session_id: str) -> None:
     """test to check if user is logged"""
@@ -49,7 +49,7 @@ def profile_logged(session_id: str) -> None:
     cookies = {'session_id': session_id}
     res = requests.get(url, cookies=cookies)
     assert res.status_code == 200
-    
+
 
 def log_out(session_id: str) -> None:
     """testing logout operation"""
@@ -80,7 +80,6 @@ def update_password(email: str, reset_token: str, new_password: str) -> None:
     res = requests.post(url, data=data)
     assert res.status_code == 200
 
-    
 
 if __name__ == "__main__":
     register_user(EMAIL, PASSWD)
