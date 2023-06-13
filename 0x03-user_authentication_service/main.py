@@ -48,8 +48,9 @@ def profile_logged(session_id: str) -> None:
 def log_out(session_id: str) -> None:
     """testing logout operation"""
     url = 'http://localhost:5000/sessions'
-    res = requests.delete(url)
-    assert res.status_code == 301
+    cookies = {'session_id': session_id}
+    res = requests.delete(url, cookies=cookies)
+    assert res.status_code == 200
     
 def reset_password_token(email: str) -> str:
     """testing for reset token func"""
