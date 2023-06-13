@@ -76,7 +76,7 @@ def update_password(email: str, reset_token: str, new_password: str) -> None:
     data = {'email': email,
             'reset_token': reset_token,
             'new_password': new_password
-           }
+    }
     res = requests.post(url, data=data)
     assert res.status_code == 200
 
